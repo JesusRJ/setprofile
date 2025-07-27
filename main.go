@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -23,11 +24,19 @@ type AWSCredentials struct {
 func main() {
 	var awsSessionToken, awsSecretAccessKey, awsAccessKeyID, awsRegion string
 
-	// Verifica se foi passado um JSON como argumento
-	if len(os.Args) > 1 {
+	// Verifica se há dados no stdin
+	stat, _ := os.Stdin.Stat()
+	if (stat.Mode() & os.ModeCharDevice) == 0 {
+		// Há dados no stdin (pipe ou redirecionamento)
+		input, err := io.ReadAll(os.Stdin)
+		if err != nil {
+			fmt.Printf("Erro ao ler do stdin: %v\n", err)
+			return
+		}
+
 		// Parse do JSON das credenciais
 		var creds AWSCredentials
-		err := json.Unmarshal([]byte(os.Args[1]), &creds)
+		err = json.Unmarshal(input, &creds)
 		if err != nil {
 			fmt.Printf("Erro ao fazer parse do JSON: %v\n", err)
 			return
@@ -42,7 +51,7 @@ func main() {
 			awsRegion = "us-east-1" // Valor padrão
 		}
 
-		fmt.Println("Usando credenciais do JSON fornecido")
+		fmt.Println("Usando credenciais do JSON fornecido via stdin")
 	} else {
 		// Obtém as variáveis de ambiente (comportamento original)
 		awsSessionToken = os.Getenv("AWS_SESSION_TOKEN")

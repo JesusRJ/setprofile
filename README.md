@@ -6,18 +6,19 @@ AWS Set Profile write AWS credentials values to ~/.aws/credentials file and expo
 
 O programa pode ser usado de duas formas:
 
-### 1. Com JSON das credenciais AWS (Recomendado)
+### 1. Com JSON das credenciais AWS via stdin (Recomendado)
 
-Execute o programa passando o JSON das credenciais como argumento:
-
-```bash
-./setprofile '{"Credentials":{"AccessKeyId":"YOUR_ACCESS_KEY","SecretAccessKey":"YOUR_SECRET_KEY","SessionToken":"YOUR_SESSION_TOKEN","Expiration":"2025-07-27T19:57:14+00:00"},"AssumedRoleUser":{"AssumedRoleId":"YOUR_ROLE_ID","Arn":"YOUR_ARN"}}'
-```
-
-Ou usando um arquivo JSON:
+Execute o programa recebendo o JSON das credenciais via pipe:
 
 ```bash
-./setprofile "$(cat example.json)"
+# Usando arquivo JSON
+cat credentials.json | ./setprofile
+
+# Usando comando AWS CLI diretamente
+aws sts assume-role --role-arn arn:aws:iam::123456789012:role/MyRole --role-session-name MySession | ./setprofile
+
+# Usando echo para teste
+echo '{"Credentials":{"AccessKeyId":"YOUR_ACCESS_KEY","SecretAccessKey":"YOUR_SECRET_KEY","SessionToken":"YOUR_SESSION_TOKEN","Expiration":"2025-07-27T19:57:14+00:00"},"AssumedRoleUser":{"AssumedRoleId":"YOUR_ROLE_ID","Arn":"YOUR_ARN"}}' | ./setprofile
 ```
 
 ### 2. Com variáveis de ambiente (Comportamento original)
@@ -49,6 +50,15 @@ O JSON deve seguir o formato retornado pelo comando `aws sts assume-role`:
     "Arn": "arn:aws:sts::971948817153:assumed-role/terraform-admin/AWSCLI-Session"
   }
 }
+```
+
+## Exemplo de uso com AWS CLI
+
+```bash
+# Assume uma role e configura as credenciais diretamente
+aws sts assume-role \
+  --role-arn arn:aws:iam::123456789012:role/terraform-admin \
+  --role-session-name terraform-session | ./setprofile
 ```
 
 ## Compilação
