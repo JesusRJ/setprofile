@@ -1,0 +1,12 @@
+{
+  "Credentials": {
+    "AccessKeyId": "ASIATKADFAFAR",
+    "SecretAccessKey": "Ui7/JONW69ADFAFAFDg",
+    "SessionToken": "IQoJb3JpZ2luX2VjEFMaCXVzLWVhc3QtMSJHMEUCIGestWQdrb0kbarnRqKWp9z423CNXwnuZNH9ybTcyT3GAiEAya5XHu9Bxi24YUFIj2LeX1JSZZEXuskUev2crZKOBaYqmwIIfBAAGgw5NzE5NDg4MTcxNTMiDFgvdO28fKUlIio8Qir4Ad8BqBu2R/NVZ/M/F8nj25xkS8rw3NFMSpwDqVM7YFVM1UmNHPlup8QJeimaqOPrIZ4LcRgVLEA20O8cduPVUdImj6ygl+8K13MVu7sx1umFK2ahWK6WSEqBGlM92pqUEIAttldh9EKg1EmhHT1EumnS2lASqyOmakUb3mASNKlCpVuuMYMfy46vQBgZBXdlAjRryojkLzuk1PfaN6hDALvGk/h1K9xr9xv6W+P0JpuqMpONH/cRKsrEX8MEZQMhoGBiqsP+qOGwwUdeM0Ay15oaZwDpX5vGZy8UvLtjLa5+F5WCH0TGpkH3/MRTQxjUW/sZbyi9YSs+MIrtmcQGOp0BcV9gC8PSJRcVKD8dYRh2DHwO399fcPEVlpsvpt2D0eqECipD8kZkP7+EmZRvQEFZ2DvFH0oEdsGxtS+PgHQqOSj/+ZIS7DLnJvGnpF/c7W4Kr3vWbBVKSoz6d4iYxEvueg/vEb4s9E7vy9+vBJwW2wQ6GocMI97z4ZIV2e8P+yYecgnSyHgZ5QyOnSF7HBnPADFAFAFD8Q==",
+    "Expiration": "2025-07-27T19:57:14+00:00"
+  },
+  "AssumedRoleUser": {
+    "AssumedRoleId": "AROA6ETFJ7MA5XWJY6EBC:AWSCLI-Session",
+    "Arn": "arn:aws:sts::971948817153:assumed-role/terraform-admin/AWSCLI-Session"
+  }
+}
